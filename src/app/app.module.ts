@@ -17,7 +17,8 @@ const appRoutes: Routes = [
   { path: 'medicaments', component: MedicamentsComponent},
   { path: 'medecins', component: MedecinsComponent},
   { path: 'visites', component: VisitesComponent}
-]
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
