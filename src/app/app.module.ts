@@ -13,6 +13,8 @@ import { AccueilComponent } from './accueil/accueil.component';
 import {HttpClientModule} from '@angular/common/http';
 import { MedicamentsListComponent } from './medicaments-list/medicaments-list.component';
 import {MedicamentService} from './services/medicament.service';
+import { MedecinsListComponent } from './medecins-list/medecins-list.component';
+import {MedecinService} from './services/medecin.service';
 
 const appRoutes: Routes = [
   { path: 'connexion', component: ConnexionComponent},
@@ -30,7 +32,8 @@ const appRoutes: Routes = [
     MedecinsComponent,
     VisitesComponent,
     AccueilComponent,
-    MedicamentsListComponent
+    MedicamentsListComponent,
+    MedecinsListComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ const appRoutes: Routes = [
     HttpClientModule
   ],
   providers: [
-    MedicamentService
+    MedicamentService,
+    MedecinService
   ],
   bootstrap: [AppComponent]
 })
