@@ -21,6 +21,24 @@ export class MedecinService {
     );
   }
 
+  getMedecin(id: number) {
+    const medecin = this.medecinsList.find(
+      (result) => {
+        return result.id === id;
+      }
+    );
+    return medecin;
+  }
+
+  searchMedecin(name: string) {
+    this.http.get<any[]>('https://webserv-gr3.sio-carriat.com/gsbapi/?noms=' + name).subscribe(
+      (response) => {
+        this.medecinsList = response;
+        this.emitMedecinSubject();
+      }
+    );
+  }
+
   emitMedecinSubject() { this.medecinSubject.next(this.medecinsList.slice()); }
 
 }

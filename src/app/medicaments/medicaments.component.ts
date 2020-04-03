@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MedicamentService} from '../services/medicament.service';
 import {Subscription} from 'rxjs';
 
@@ -11,6 +11,8 @@ export class MedicamentsComponent implements OnInit {
 
   title = 'Les Médicaments';
 
+  @Input() ref: string;
+
   medics: any[];
   medicSubscription: Subscription;
 
@@ -18,6 +20,16 @@ export class MedicamentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.medicService.getAllMedic();
+    this.medicSubscription = this.medicService.medicSubject.subscribe(
+      (medic: any[]) => {
+        this.medics = medic;
+      }
+    );
+    this.medicService.emitMedicSubject();
+  }
+
+  onSearchMedecin() {
+    this.medicService.searchMedic(this.ref);
     this.medicSubscription = this.medicService.medicSubject.subscribe(
       (medic: any[]) => {
         this.medics = medic;

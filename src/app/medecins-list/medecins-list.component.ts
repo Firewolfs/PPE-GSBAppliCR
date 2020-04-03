@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {MedecinService} from '../services/medecin.service';
 
 @Component({
   selector: 'app-medecins-list',
@@ -7,12 +8,26 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class MedecinsListComponent implements OnInit {
 
+  @Input() id: number;
   @Input() firstname: string;
   @Input() name: string;
+  @Input() address: string;
+  @Input() tel: string;
+  @Input() spec: string;
+  @Input() dep: string;
 
-  constructor() { }
+  leMedecin: any[];
 
-  ngOnInit(): void {
+  visible = false;
+
+  constructor(private medService: MedecinService) { }
+
+  ngOnInit(): void {}
+
+  onGetMedecin() {
+    this.visible = this.visible === false
+
+    this.leMedecin = this.medService.getMedecin(this.id);
   }
 
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Subject} from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({
@@ -10,6 +10,10 @@ export class MedicamentService {
   medicSubject = new Subject<any[]>();
   private medicsList = [];
 
+  famSubject = new Subject<any[]>();
+  private family = [];
+  private famille: string;
+
   constructor(private http: HttpClient) {}
 
   getAllMedic() {
@@ -19,8 +23,20 @@ export class MedicamentService {
         this.emitMedicSubject();
       }
     );
+    console.log(this.medicsList);
+  }
+
+  searchMedic(ref: string) {
+    this.http.get<any[]>('https://webserv-gr3.sio-carriat.com/gsbapi/?nomMed=' + ref).subscribe(
+      (response) => {
+        this.medicsList = response;
+        this.emitMedicSubject();
+      }
+    );
   }
 
   emitMedicSubject() { this.medicSubject.next(this.medicsList.slice()); }
+
+  emitFamSubject() { this.famSubject.next(this.family.slice()); }
 
 }

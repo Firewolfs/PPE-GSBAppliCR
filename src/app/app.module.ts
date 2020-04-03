@@ -15,6 +15,7 @@ import { MedicamentsListComponent } from './medicaments-list/medicaments-list.co
 import {MedicamentService} from './services/medicament.service';
 import { MedecinsListComponent } from './medecins-list/medecins-list.component';
 import {MedecinService} from './services/medecin.service';
+import {FormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'connexion', component: ConnexionComponent},
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     HttpClientModule
