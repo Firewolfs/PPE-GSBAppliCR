@@ -10,6 +10,10 @@ import { MedicamentsComponent } from './medicaments/medicaments.component';
 import { MedecinsComponent } from './medecins/medecins.component';
 import { VisitesComponent } from './visites/visites.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { TableRapportsVisitesComponent } from './visites/table-rapports-visites/table-rapports-visites.component';
+import { HttpClientModule } from '@angular/common/http';
+
+import { RapportsVisistesService } from './services/RapportsVisistesService'
 
 const appRoutes: Routes = [
   { path: 'connexion', component: ConnexionComponent},
@@ -26,14 +30,18 @@ const appRoutes: Routes = [
     MedicamentsComponent,
     MedecinsComponent,
     VisitesComponent,
-    AccueilComponent
+    AccueilComponent,
+    TableRapportsVisitesComponent
   ],
   imports: [
     BrowserModule,
     MDBBootstrapModule.forRoot(),
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    RapportsVisistesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
