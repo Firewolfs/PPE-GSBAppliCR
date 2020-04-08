@@ -17,8 +17,9 @@
             <input type="text" class="form-control mb-4" placeholder="Login">
             <input type="password" class="form-control mb-4" placeholder="Mot de passe">
         </div>
-        <button type="button" class="btn btn-primary">Connexion</button>
-    </form>
+        <button type="button" class="btn btn-primary" *ngIf="!authStatus" (click)="onSignIn()">Connexion</button>
+        <button class="btn btn-danger" *ngIf="authStatus" (click)="onSignOut()">Se déconnecter</button>
+      </form>
 </div>
 </body>
 </html>

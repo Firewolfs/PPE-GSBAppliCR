@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { AppComponent } from './app.component';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
@@ -18,6 +19,9 @@ import {MedicamentService} from './services/medicament.service';
 import { MedecinsListComponent } from './medecins-list/medecins-list.component';
 import {MedecinService} from './services/medecin.service';
 import {FormsModule} from '@angular/forms';
+import {AuthGuard} from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
+import { ApiService } from './services/api.service';
 
 const appRoutes: Routes = [
   { path: '', component: ConnexionComponent},
@@ -50,7 +54,10 @@ const appRoutes: Routes = [
   providers: [
     MedicamentService,
     MedecinService,
-    RapportsVisistesService
+    RapportsVisistesService,
+    AuthService,
+    AuthGuard,
+    ApiService
   ],
   bootstrap: [AppComponent]
 })
