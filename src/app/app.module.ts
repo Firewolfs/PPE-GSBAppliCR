@@ -20,6 +20,7 @@ import {MedecinService} from './services/medecin.service';
 import {FormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
+  { path: '', component: ConnexionComponent},
   { path: 'connexion', component: ConnexionComponent},
   { path: 'accueil', component: AccueilComponent},
   { path: 'medicaments', component: MedicamentsComponent},
