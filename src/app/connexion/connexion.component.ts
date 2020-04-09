@@ -17,7 +17,7 @@ export class ConnexionComponent implements OnInit {
   loginForm: FormGroup;
   private user: User[];
   isAuth: boolean;
-  error;
+
 
 
   constructor(private formBuilder: FormBuilder,
@@ -40,7 +40,6 @@ export class ConnexionComponent implements OnInit {
     const formValue = this.loginForm.value;
 
     this.authService.getUserInfo(formValue.login, formValue.mdp).then(user =>{
-      this.error = user;
       console.log('login ='+ user);
       this.isAuth = this.authService.isAuth;
       this.route.navigate(['accueil']);

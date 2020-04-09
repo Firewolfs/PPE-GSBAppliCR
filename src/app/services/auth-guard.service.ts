@@ -18,9 +18,5 @@ export class AuthGuard implements CanActivate{
     if (this.authservice.isAuth){
       return true;
     }
-    else {
-      // si la connexion est réussie, le visiteur est redirigé sur la page d'accueil
-      this.route.navigate(['/accueil']);
-    }
   }
 }
