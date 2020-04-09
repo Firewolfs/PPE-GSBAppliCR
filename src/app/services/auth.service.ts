@@ -40,15 +40,13 @@ export class AuthService {
       });
     }
 
+  // Déconnexion
   signOut(){
     this.isAuth = false;
   }
 
   emitUserSuject(){
     this.userSubject.next(this.user.slice());
-}
-
-
-
+  }
 
 }
