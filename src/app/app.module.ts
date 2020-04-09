@@ -25,10 +25,10 @@ import { AuthService } from './services/auth.service';
 const appRoutes: Routes = [
   { path: '', component: ConnexionComponent},
   { path: 'connexion', component: ConnexionComponent},
-  { path: 'accueil', component: AccueilComponent},
-  { path: 'medicaments', component: MedicamentsComponent},
-  { path: 'medecins', component: MedecinsComponent},
-  { path: 'visites', component: VisitesComponent}
+  { path: 'accueil', /*canActivate: [AuthGuard],*/ component: AccueilComponent},
+  { path: 'medicaments', /*canActivate: [AuthGuard],*/ component: MedicamentsComponent},
+  { path: 'medecins', /*canActivate: [AuthGuard],*/ component: MedecinsComponent},
+  { path: 'visites', /*canActivate: [AuthGuard],*/ component: VisitesComponent}
 ];
 
 @NgModule({

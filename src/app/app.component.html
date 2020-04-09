@@ -1,21 +1,34 @@
-<nav class="navbar navbar-expand-lg navbar-dark primary-color">
-  <div class="collapse navbar-collapse" id="basicExampleNav">
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark primary-color">
+<!-- Menu hamburger -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+<!-- Navbar -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
     <ul class="navbar-nav mr-auto">
-      <li routerLinkActive="active" class="nav-item">
-        <a class="nav-link" routerLink="accueil">Accueil</a>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="accueil" routerLinkActive="active">Accueil</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="medicaments">Médicaments</a>
+        <a class="nav-link" routerLink="medicaments" routerLinkActive="active">Médicaments</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="medecins">Médecins</a>
+        <a class="nav-link" routerLink="medecins" routerLinkActive="active">Médecins</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="visites">Mes visites</a>
+        <a class="nav-link" routerLink="visites" routerLinkActive="active">Mes visites</a>
       </li>
+    </ul>
+
+    <!-- Déconnexion -->
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <button type="button" class="btn btn-danger" [hidden]="show" (click)="onSignOut()"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
     </ul>
   </div>
 </nav>
+
 
 <div class="container">
   <br>

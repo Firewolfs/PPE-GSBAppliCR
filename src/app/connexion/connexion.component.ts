@@ -18,6 +18,8 @@ export class ConnexionComponent implements OnInit {
   private user: User[];
   isAuth: boolean;
 
+
+
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private route: Router){}
