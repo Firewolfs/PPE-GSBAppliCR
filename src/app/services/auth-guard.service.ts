@@ -5,15 +5,22 @@ import {AuthService} from "./auth.service";
 
 @Injectable()
 
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate{
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authservice: AuthService,private route: Router){}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authService.isAuth) {
+// Activation des routes si le visiteur est connecté
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> | Promise<boolean> |
+  boolean {
+    if (this.authservice.isAuth){
       return true;
-    } else {
-      this.router.navigate(['connexion']);
+    }
+    else {
+      // si la connexion est réussie, le visiteur est redirigé sur la page d'accueil
+      this.route.navigate(['/accueil']);
     }
   }
 }

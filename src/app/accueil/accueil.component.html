@@ -1,1 +1,13 @@
-<h1>Bienvenue</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil</title>
+</head>
+<body>
+  <!-- Récupération et affichage du prénom et nom du visiteur -->
+  <h1 *ngFor = "let user of user;">Bienvenue {{user.prenom}} {{user.nom}}</h1>
+</body>
+</html>
+

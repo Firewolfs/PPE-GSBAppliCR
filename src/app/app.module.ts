@@ -18,10 +18,9 @@ import { MedicamentsListComponent } from './medicaments-list/medicaments-list.co
 import {MedicamentService} from './services/medicament.service';
 import { MedecinsListComponent } from './medecins-list/medecins-list.component';
 import {MedecinService} from './services/medecin.service';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthGuard} from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
-import { ApiService } from './services/api.service';
 
 const appRoutes: Routes = [
   { path: '', component: ConnexionComponent},
@@ -47,6 +46,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     HttpClientModule
@@ -56,8 +56,7 @@ const appRoutes: Routes = [
     MedecinService,
     RapportsVisistesService,
     AuthService,
-    AuthGuard,
-    ApiService
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

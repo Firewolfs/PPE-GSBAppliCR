@@ -2,50 +2,45 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import { Router } from "@angular/router";
 import { Subscription } from 'rxjs';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { User } from "../models/user.model";
 
 @Component({
   selector: 'app-connexion',
   templateUrl: './connexion.component.html',
   styleUrls: ['./connexion.component.css']
 })
+
 export class ConnexionComponent implements OnInit {
 
   // Variables
-  authStatus: boolean;
+  loginForm: FormGroup;
+  private user: User[];
+  isAuth: boolean;
 
-  visiteurs: any[];
-  visiteurSubscription: Subscription;
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService,
+              private route: Router){}
 
-  constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void {
-    this.authStatus = this.authService.isAuth;
-
-    this.authService.getAllVisiteurs();
-
-    this.visiteurSubscription = this.authService.visiteurSubject.subscribe(
-    (visiteurs: any[]) => {
-      this.visiteurs= visiteurs;
-      console.log(this.visiteurs);
-    }
-      );
-    this.authService.emitVisiteurSubject();
-
+  ngOnInit(){
+    this.init();
   }
 
-  onSignIn() {
-    this.authService.signIn().then(
-      () => {
-        this.authStatus = this.authService.isAuth;
-        // Envoie lors de la connexion vers la page home
-        this.router.navigate(['connexion']);
-      }
-    );
+  init(){
+    this.loginForm = this.formBuilder.group({
+      login: ['', Validators.required],
+      mdp: ['', Validators.required],
+    });
   }
 
-  onSignOut() {
-    this.authService.signOut();
-    this.authStatus = this.authService.isAuth;
-  }
+  onSubmit(){
+    const formValue = this.loginForm.value;
 
+    this.authService.getUserInfo(formValue.login, formValue.mdp).then(user =>{
+      console.log('login ='+ user);
+      this.isAuth = this.authService.isAuth;
+      this.route.navigate(['accueil']);
+    });
+  }
 }
