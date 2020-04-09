@@ -1,5 +1,14 @@
 <div class="d-flex flex-column">
-    <div class="p-2 pb-3 d-flex flex-row justify-content-end">
+    <div class="p-2 pb-3 d-flex flex-row d-flex justify-content-between align-items-center">
+        <div class="md-form m-0">
+            <input type="date" id="input" class="form-control" mdbInput>
+            <label for="input">Choisissez une date</label>
+        </div>
+        <form class="form-inline waves-light m-0" mdbWavesEffect>
+            <div class="md-form mt-0">
+              <input class="form-control m-0" type="text" placeholder="Rechercher un médecin">
+            </div>
+        </form>
         <button mdbBtn type="button" color="primary" mdbWavesEffect class="d-flex flex-row align-items-center">
             <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>
             Nouveau
