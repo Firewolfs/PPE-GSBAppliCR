@@ -21,6 +21,8 @@ import {MedecinService} from './services/medecin.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthGuard} from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
+import { FormUpdateMedecinComponent } from './medecins-list/form-update-medecin/form-update-medecin.component';
+import { FormUpdateMedicComponent } from './medicaments-list/form-update-medic/form-update-medic.component';
 
 const appRoutes: Routes = [
   { path: '', component: ConnexionComponent},
@@ -41,7 +43,9 @@ const appRoutes: Routes = [
     AccueilComponent,
     TableRapportsVisitesComponent,
     MedicamentsListComponent,
-    MedecinsListComponent
+    MedecinsListComponent,
+    FormUpdateMedecinComponent,
+    FormUpdateMedicComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     MedicamentService,
