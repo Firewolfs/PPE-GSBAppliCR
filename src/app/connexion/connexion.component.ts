@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../services/auth.service';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { User } from '../models/user.model';
+import { AuthService } from '../services/auth.service';
+import { User } from "../models/user.model";
 
 @Component({
   selector: 'app-connexion',
@@ -16,30 +16,30 @@ export class ConnexionComponent implements OnInit {
   loginForm: FormGroup;
   private user: User[];
   isAuth: boolean;
-
-
+  erreur;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
-              private route: Router) {}
+              private route: Router){}
 
 
-  ngOnInit() {
-    this.init();
+  ngOnInit(){
+    this.initForm();
   }
 
-  init() {
+  initForm(){
     this.loginForm = this.formBuilder.group({
       login: ['', Validators.required],
       mdp: ['', Validators.required],
     });
   }
 
-  onSubmit() {
+  onSubmitForm(){
     const formValue = this.loginForm.value;
 
-    this.authService.getUserInfo(formValue.login, formValue.mdp).then(user => {
-      console.log('login =' + user);
+    this.authService.getUserInfo(formValue.login, formValue.mdp).then(user =>{
+      this.erreur = user;
+      console.log('login ='+ user);
       this.isAuth = this.authService.isAuth;
       this.route.navigate(['accueil']);
     });

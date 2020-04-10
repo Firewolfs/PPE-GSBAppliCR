@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html>
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <!-- <link rel="stylesheet" href="../../styles.css"/> -->
   <title>Connexion</title>
 </head>
 <body>
 <!-- Formulaire de connexion  -->
 <div class="form-container">
 
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"form class="text-center border border-light p-5">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmitForm()"form class="text-center border border-light p-5">
         <div class="form-group">
 
           <!-- Logo -->
@@ -17,13 +16,22 @@
             <img src="../../assets/logo1.jpg"  alt="LogoGSB" />
           </div>
 <br><br>
-          <!-- Login et mdp -->
-        <div class="form-row mb-4">
-          <input formControlName="login" type="text" id="login" name="login" class="form-control mb-4" placeholder="Login">
-          <input formControlName="mdp" type="password" id="mdp" name="mdp" class="form-control mb-4" placeholder="Mot de passe">
-      </div>
+          <!-- Affichage d'un msg d'erreur si le login ou le mdp est incorrect -->
+          <div class="alert alert-danger" *ngIf="erreur">
+            {{erreur}}
+          </div>
 
-      <!-- Bouton -->
-        <button class="btn btn-primary" type="submit">Connexion</button>
-  </div>
+          <!-- Login et mdp -->
+          <div class="form-group">
+            <input formControlName="login" type="text" id="login" name="login" class="form-control" placeholder="Login">
+<br>
+            <input formControlName="mdp" type="password" id="mdp" name="mdp" class="form-control"placeholder="Mot de passe">
+          </div>
+          <div>
+            <!-- Bouton connexion -->
+            <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">Connexion</button>
+          </div>
+        </div>
   </form>
+</div>
+

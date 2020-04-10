@@ -1,11 +1,11 @@
-import {Subject} from "rxjs";
-import {Injectable} from "@angular/core";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
-import{HttpClient, HttpClientModule} from '@angular/common/http';
+import { Subject } from 'rxjs';
+
 
 @Injectable()
-
-export class AuthService {
+export class AuthService{
 
   // Variables
   userSubject = new Subject<any[]>();
@@ -14,39 +14,38 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient){}
 
-  // Récupération du login et mdp dans la BDD du serveur
+  // Récupération du login et mdp dans l'API
   getUserInfo(login, mdp) {
     return new Promise((resolve, reject) => {
       this.httpClient.get<any>('https://webserv-gr3.sio-carriat.com/gsbapi/?login='+login).subscribe(
         authData => {
+          // authData est à 0 si l'utilisateur est reconnu
           if(authData[0] !== undefined)
           {
-            // Vérification du login et du mdp
+            // Comparaison des données de l'API et du form de connexion
             if(login === authData[0].login && mdp === authData[0].mdp){
               this.user.push(authData[0]);
               this.isAuth = true;
               resolve(this.user[0]);
             }
-            // Msg d'erreur si le login est incorrect -> à finir
+            // Si le login est bon mais pas le mdp on affiche un msg d'erreur
             else{
-              resolve("Login incorrect");
+              resolve("Erreur de mot de passe");
             }
           }
-          // Msg d'erreur si le mdp est incorrect -> à finir
+          // Si le login n'est pas bon, on affiche un msg d'erreur
           else{
-            resolve("Mdp incorrect");
+            resolve("Erreur de login");
           }
         });
       });
     }
 
-  // Déconnexion
-  signOut(){
+  logout(){
     this.isAuth = false;
   }
 
   emitUserSuject(){
     this.userSubject.next(this.user.slice());
-  }
-
+}
 }
