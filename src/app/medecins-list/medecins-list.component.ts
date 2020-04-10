@@ -28,8 +28,6 @@ export class MedecinsListComponent implements OnInit {
   onGetMedecin() {
     this.visible = this.visible === false;
     this.update = this.update === false;
-
-    this.leMedecin = this.medService.getMedecin(this.id);
   }
 
 }
