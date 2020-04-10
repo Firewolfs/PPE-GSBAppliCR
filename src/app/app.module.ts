@@ -23,12 +23,14 @@ import {AuthGuard} from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 
 const appRoutes: Routes = [
-  { path: '', component: ConnexionComponent},
+
   { path: 'connexion', component: ConnexionComponent},
-  { path: 'accueil', /*canActivate: [AuthGuard],*/ component: AccueilComponent},
-  { path: 'medicaments', /*canActivate: [AuthGuard],*/ component: MedicamentsComponent},
-  { path: 'medecins', /*canActivate: [AuthGuard],*/ component: MedecinsComponent},
-  { path: 'visites', /*canActivate: [AuthGuard],*/ component: VisitesComponent}
+  { path: 'accueil', canActivate: [AuthGuard], component: AccueilComponent},
+  { path: 'medicaments', canActivate: [AuthGuard], component: MedicamentsComponent},
+  { path: 'medecins', canActivate: [AuthGuard], component: MedecinsComponent},
+  { path: 'visites', canActivate: [AuthGuard], component: VisitesComponent},
+  { path: '', component: ConnexionComponent},
+
 ];
 
 @NgModule({
