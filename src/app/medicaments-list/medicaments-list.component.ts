@@ -16,6 +16,7 @@ export class MedicamentsListComponent implements OnInit {
   @Input() contraindication: string;
 
   visible = false;
+  update = false;
 
   constructor(private medicService: MedicamentService) {}
 
@@ -23,6 +24,7 @@ export class MedicamentsListComponent implements OnInit {
 
   onGetMedic() {
     this.visible = this.visible === false;
+    this.update = this.update === false;
   }
 
 }

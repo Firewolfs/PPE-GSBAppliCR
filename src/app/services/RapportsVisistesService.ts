@@ -15,7 +15,7 @@ export class RapportsVisistesService
         this.rapportsSubject.next(this.rapportsVisites.slice());
     }
 
-    getRapportsVisites(idVisiteur : String) {
+    getAllRapportsVisites(idVisiteur : String) {
         this.httpClient
           .get<any[]>('https://webserv-gr3.sio-carriat.com/gsbapi/?id5=' + idVisiteur)
           .subscribe
@@ -31,4 +31,22 @@ export class RapportsVisistesService
             }
           );
     }
+
+
+    getRapportsVisitesDate(idVisiteur : String, dateVisite: String) {
+      this.httpClient
+        .get<any[]>('https://webserv-gr3.sio-carriat.com/gsbapi/?id5=' + idVisiteur + '&dateVisite=' + dateVisite)
+        .subscribe
+        (
+          (response) => 
+          {
+            this.rapportsVisites = response;
+            this.emitRapportsSubject();
+          },
+          (error) => 
+          {
+            console.log('Erreur ! : ' + error);
+          }
+        );
+  }
 }

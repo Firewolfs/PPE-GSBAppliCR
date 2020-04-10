@@ -28,6 +28,7 @@ export class TableRapportsVisitesComponent implements OnInit, OnDestroy, AfterVi
   ngOnInit() 
   {
 
+     
     this.rapportsSubscription = this.rapportsService.rapportsSubject.subscribe(
       (rapports: any[]) => {
 
@@ -39,7 +40,8 @@ export class TableRapportsVisitesComponent implements OnInit, OnDestroy, AfterVi
 
       }
     );
-    this.rapportsService.getRapportsVisites('a131'); 
+    
+    this.rapportsService.getAllRapportsVisites('a131');
 
   }
 
@@ -53,4 +55,10 @@ export class TableRapportsVisitesComponent implements OnInit, OnDestroy, AfterVi
     
   }
 
+  filtrerRapportsVisites()
+  {
+
+    
+
+  }
 }
