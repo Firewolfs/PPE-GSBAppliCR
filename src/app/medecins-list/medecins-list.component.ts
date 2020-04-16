@@ -19,15 +19,15 @@ export class MedecinsListComponent implements OnInit {
   leMedecin: any[];
 
   visible = false;
+  update = false;
 
   constructor(private medService: MedecinService) { }
 
   ngOnInit(): void {}
 
   onGetMedecin() {
-    this.visible = this.visible === false
-
-    this.leMedecin = this.medService.getMedecin(this.id);
+    this.visible = this.visible === false;
+    this.update = this.update === false;
   }
 
 }

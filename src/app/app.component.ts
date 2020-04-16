@@ -19,8 +19,11 @@ export class AppComponent {
   }
 
   // Déconnexion, redirection vers la page connexion
-  onSignOut(){
-    this.authService.signOut();
-    this.route.navigate(['connexion']);
+  logout() {
+    console.log('Tentative de déconnexion');
+
+    localStorage.removeItem('user');
+    this.route.navigate(['/connexion']);
+
   }
 }

@@ -1,34 +1,53 @@
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark primary-color">
-<!-- Menu hamburger -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark blue fixed-top scrolling-navbar">
+  <!-- Navbar brand Logo-->
+  <mdb-navbar-brand>
+    <a class="navbar-brand">
+        <img src="../assets/logo1.jpg" height="30" alt="">
+    </a>
+</mdb-navbar-brand>
+  <!-- Navbar brand -->
+  <!-- <mdb-navbar-brand><a class="navbar-brand" href="#">GSB</a></mdb-navbar-brand> -->
 
-<!-- Navbar -->
-  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="accueil" routerLinkActive="active">Accueil</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="medicaments" routerLinkActive="active">Médicaments</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="medecins" routerLinkActive="active">Médecins</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="visites" routerLinkActive="active">Mes visites</a>
-      </li>
-    </ul>
+  <!-- Collapsible content -->
+  <links>
 
-    <!-- Déconnexion -->
-    <ul class="navbar-nav ml-auto nav-flex-icons">
-      <button type="button" class="btn btn-danger" [hidden]="show" (click)="onSignOut()"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
-    </ul>
-  </div>
-</nav>
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="accueil" routerLinkActive="active">
+                Accueil
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="medicaments" routerLinkActive="active">
+                Médicaments
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="medecins" routerLinkActive="active">
+                Médecins
+              </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect routerLink="visites" routerLinkActive="active">
+              Mes visites
+            </a>
+        </li>
+      </ul>
 
+      <!-- Bouton déconnexion -->
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <button type="button" class="btn btn-danger" [hidden]="show" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i>Déconnexion
+        </button>
+      </ul>
+      <!-- Links -->
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
 
 <div class="container">
   <br>

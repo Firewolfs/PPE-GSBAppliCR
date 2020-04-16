@@ -12,6 +12,11 @@ export class MedecinService {
 
   constructor(private http: HttpClient) { }
 
+  updateMedecin(id: number, addr: string, phone: string, spec: string) {
+    this.http.get('https://webserv-gr3.sio-carriat.com/gsbapi/?id2='
+      + id + '&adresse=' + addr + '&tel=' + phone + '&speComplementaire=' + spec).subscribe();
+  }
+
   getAllMedecin() {
     this.http.get<any[]>('https://webserv-gr3.sio-carriat.com/gsbapi/?noms=').subscribe(
       (response) => {
@@ -19,15 +24,6 @@ export class MedecinService {
         this.emitMedecinSubject();
       }
     );
-  }
-
-  getMedecin(id: number) {
-    const medecin = this.medecinsList.find(
-      (result) => {
-        return result.id === id;
-      }
-    );
-    return medecin;
   }
 
   searchMedecin(name: string) {

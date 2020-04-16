@@ -22,14 +22,18 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthGuard} from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { ModalRapportsVisitesComponent } from './visites/modal-rapports-visites/modal-rapports-visites.component';
+import { FormUpdateMedecinComponent } from './medecins-list/form-update-medecin/form-update-medecin.component';
+import { FormUpdateMedicComponent } from './medicaments-list/form-update-medic/form-update-medic.component';
 
 const appRoutes: Routes = [
-  { path: '', component: ConnexionComponent},
+
   { path: 'connexion', component: ConnexionComponent},
-  { path: 'accueil', /*canActivate: [AuthGuard],*/ component: AccueilComponent},
-  { path: 'medicaments', /*canActivate: [AuthGuard],*/ component: MedicamentsComponent},
-  { path: 'medecins', /*canActivate: [AuthGuard],*/ component: MedecinsComponent},
-  { path: 'visites', /*canActivate: [AuthGuard],*/ component: VisitesComponent}
+  { path: 'accueil', canActivate: [AuthGuard], component: AccueilComponent},
+  { path: 'medicaments', canActivate: [AuthGuard], component: MedicamentsComponent},
+  { path: 'medecins', canActivate: [AuthGuard], component: MedecinsComponent},
+  { path: 'visites', canActivate: [AuthGuard], component: VisitesComponent},
+  { path: '', component: ConnexionComponent},
+
 ];
 
 @NgModule({
@@ -43,7 +47,9 @@ const appRoutes: Routes = [
     TableRapportsVisitesComponent,
     MedicamentsListComponent,
     MedecinsListComponent,
-    ModalRapportsVisitesComponent
+    ModalRapportsVisitesComponent,
+    FormUpdateMedecinComponent,
+    FormUpdateMedicComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +57,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     MedicamentService,

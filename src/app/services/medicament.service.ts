@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Subject, Subscription} from 'rxjs';
+import {Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({
@@ -16,6 +16,11 @@ export class MedicamentService {
 
   constructor(private http: HttpClient) {}
 
+  updateMedic(ref: string, compo: string, effect: string, contreIndic: string) {
+    this.http.get('https://webserv-gr3.sio-carriat.com/gsbapi/?idMed2='
+      + ref + '&composition=' + compo + '&effets=' + effect + '&contreIndications=' + contreIndic).subscribe();
+  }
+
   getAllMedic() {
     this.http.get<any[]>('https://webserv-gr3.sio-carriat.com/gsbapi/?nomMed=').subscribe(
       (response) => {
@@ -23,7 +28,6 @@ export class MedicamentService {
         this.emitMedicSubject();
       }
     );
-    console.log(this.medicsList);
   }
 
   searchMedic(ref: string) {
