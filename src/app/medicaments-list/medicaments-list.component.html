@@ -11,7 +11,7 @@
     <strong>Contre indications : </strong>{{contraindication}}
     <br><br>
     <div *ngIf="update">
-      <app-form-update-medic [name]="name"></app-form-update-medic>
+      <app-form-update-medic [ref]="ref" [name]="name" [compo]="compo" [effect]="effect" [contreIndic]="contraindication"></app-form-update-medic>
     </div>
   </div>
 </li>
