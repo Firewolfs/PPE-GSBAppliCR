@@ -49,4 +49,41 @@ export class RapportsVisistesService
           }
         );
   }
+
+  getRapportsVisitesMedecin(idVisiteur: String, medecin: String)
+  {
+    this.httpClient
+        .get<any[]>('https://webserv-gr3.sio-carriat.com/gsbapi/?id5=' + idVisiteur + '&medecinVisite=' + medecin)
+        .subscribe
+        (
+          (response) => 
+          {
+            this.rapportsVisites = response;
+            this.emitRapportsSubject();
+          },
+          (error) => 
+          {
+            console.log('Erreur ! : ' + error);
+          }
+        );
+  }
+
+  
+  getRapportsVisitesDateEtMedecin(idVisiteur: String, dateVisite: String, medecin: String)
+  {
+    this.httpClient
+    .get<any[]>('https://webserv-gr3.sio-carriat.com/gsbapi/?id5=' + idVisiteur + '&dateVisite=' + dateVisite + "&medecinVisite=" + medecin)
+    .subscribe
+    (
+      (response) => 
+      {
+        this.rapportsVisites = response;
+        this.emitRapportsSubject();
+      },
+      (error) => 
+      {
+        console.log('Erreur ! : ' + error);
+      }
+    );
+  }
 }

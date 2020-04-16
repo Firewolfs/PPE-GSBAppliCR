@@ -21,6 +21,7 @@ import {MedecinService} from './services/medecin.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthGuard} from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
+import { ModalRapportsVisitesComponent } from './visites/modal-rapports-visites/modal-rapports-visites.component';
 
 const appRoutes: Routes = [
   { path: '', component: ConnexionComponent},
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     AccueilComponent,
     TableRapportsVisitesComponent,
     MedicamentsListComponent,
-    MedecinsListComponent
+    MedecinsListComponent,
+    ModalRapportsVisitesComponent
   ],
   imports: [
     BrowserModule,

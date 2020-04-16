@@ -1,7 +1,8 @@
 import { MdbTablePaginationComponent, MdbTableDirective } from 'angular-bootstrap-md';
-import { Component, OnInit, ViewChild, HostListener, AfterViewInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, AfterViewInit, ChangeDetectorRef, OnDestroy, Input } from '@angular/core';
 import { RapportsVisistesService } from "../../services/RapportsVisistesService";
 import { Subscription } from 'rxjs';
+import { ModalRapportsVisitesComponent } from "../modal-rapports-visites/modal-rapports-visites.component";
 
 @Component({
   selector: 'app-table-rapports-visites',
@@ -10,12 +11,14 @@ import { Subscription } from 'rxjs';
 })
 export class TableRapportsVisitesComponent implements OnInit, OnDestroy, AfterViewInit {
 
+  @Input() modalRapportsVisites: ModalRapportsVisitesComponent;
+
   @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective
 
   lesRapports: any = [];
   lesRapportsPrecedents: any = [];
-  rapportsSubscription: Subscription;
+  rapportsSouscription: Subscription;
   colonnes = ['Numéro', 'Date', 'Médecin', 'Motif'];
 
   constructor(private cdRef: ChangeDetectorRef, private rapportsService: RapportsVisistesService) { }
@@ -29,7 +32,7 @@ export class TableRapportsVisitesComponent implements OnInit, OnDestroy, AfterVi
   {
 
      
-    this.rapportsSubscription = this.rapportsService.rapportsSubject.subscribe(
+    this.rapportsSouscription = this.rapportsService.rapportsSubject.subscribe(
       (rapports: any[]) => {
 
         this.lesRapports = rapports;
@@ -37,7 +40,8 @@ export class TableRapportsVisitesComponent implements OnInit, OnDestroy, AfterVi
         this.mdbTable.setDataSource(this.lesRapports);
         this.lesRapports = this.mdbTable.getDataSource();
         this.lesRapportsPrecedents = this.mdbTable.getDataSource();
-
+        this.mdbTablePagination.firstPage();
+        
       }
     );
     
@@ -53,12 +57,5 @@ export class TableRapportsVisitesComponent implements OnInit, OnDestroy, AfterVi
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
     
-  }
-
-  filtrerRapportsVisites()
-  {
-
-    
-
   }
 }
