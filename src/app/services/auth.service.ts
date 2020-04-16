@@ -41,9 +41,9 @@ export class AuthService{
       });
     }
 
-  logout(){
-    this.isAuth = false;
-  }
+    signOut() {
+      this.isAuth = false;
+    }
 
   emitUserSuject(){
     this.userSubject.next(this.user.slice());

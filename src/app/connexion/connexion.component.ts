@@ -17,6 +17,7 @@ export class ConnexionComponent implements OnInit {
   private user: User[];
   isAuth: boolean;
   erreur;
+  authStatus: boolean;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
@@ -34,14 +35,18 @@ export class ConnexionComponent implements OnInit {
     });
   }
 
-  onSubmitForm(){
+  onSignIn(){
     const formValue = this.loginForm.value;
-
     this.authService.getUserInfo(formValue.login, formValue.mdp).then(user =>{
       this.erreur = user;
       console.log('login ='+ user);
       this.isAuth = this.authService.isAuth;
       this.route.navigate(['accueil']);
     });
+  }
+
+  onSignOut() {
+    this.authService.signOut();
+    this.authStatus = this.authService.isAuth;
   }
 }
