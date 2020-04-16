@@ -10,13 +10,13 @@ import { AuthService } from '../services/auth.service';
 export class AccueilComponent implements OnInit {
 
   // Variable
-  user: any[];
+  user: User;
 
   constructor(private authService: AuthService) { }
 
   // Appel à authService
   ngOnInit() {
-    this.user = this.authService.user;
+    this.user = this.authService.User;
   }
 
 }

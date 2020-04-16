@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { User } from "../models/user.model";
 
 @Component({
   selector: 'app-connexion',
@@ -14,10 +13,7 @@ export class ConnexionComponent implements OnInit {
 
   // Variables
   loginForm: FormGroup;
-  private user: User[];
-  isAuth: boolean;
-  erreur;
-  authStatus: boolean;
+  erreur: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
@@ -37,16 +33,15 @@ export class ConnexionComponent implements OnInit {
 
   onSignIn(){
     const formValue = this.loginForm.value;
-    this.authService.getUserInfo(formValue.login, formValue.mdp).then(user =>{
-      this.erreur = user;
-      console.log('login ='+ user);
-      this.isAuth = this.authService.isAuth;
-      this.route.navigate(['accueil']);
+    this.authService.signIn(formValue.login, formValue.mdp).then(resultConnexion =>{
+      if (resultConnexion) 
+      {
+        this.route.navigate(['accueil']);
+      } 
+      else 
+      {
+        this.erreur = true;
+      }
     });
-  }
-
-  onSignOut() {
-    this.authService.signOut();
-    this.authStatus = this.authService.isAuth;
   }
 }
