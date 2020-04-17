@@ -14,16 +14,16 @@ export class AuthService{
   public get IsAuth() : boolean {
     return this.isAuth;
   }
-  
 
-  public get User() : User 
+
+  public get User() : User
   {
     return this.user;
   }
 
   constructor(private httpClient: HttpClient){}
 
-  // Récupération du login et mdp dans l'API
+  // Connexion (récupération du login et mdp dans l'API)
   signIn(login, mdp) {
     return new Promise((resolve, reject) => {
       this.httpClient.get<any>('https://webserv-gr3.sio-carriat.com/gsbapi/?login='+login).subscribe(
@@ -50,9 +50,10 @@ export class AuthService{
       });
     }
 
+    // Déconnexion
     signOut() {
       this.isAuth = false;
       this.user = undefined;
     }
-    
+
 }
