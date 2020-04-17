@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from "angular-bootstrap-md/angular-bootstrap-md";
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RapportsVisistesService } from "../../services/RapportsVisistesService";
 import { MedicamentService } from "../../services/medicament.service";
 import { MedecinService } from "../../services/medecin.service";
@@ -22,7 +22,7 @@ export class ModalRapportsVisitesComponent implements OnInit {
 
   medicamentsSouscription: Subscription;
   listeMedicaments: any[];
-  medicamentsSelect: any[];
+  medicamentsSelect: any[] = [];
 
 
   constructor(private formBuilder: FormBuilder, private medicamentsService: MedicamentService, private medecinsService: MedecinService) { }
@@ -32,10 +32,11 @@ export class ModalRapportsVisitesComponent implements OnInit {
       this.formRapport = this.formBuilder.group
       (
         {
-          dateVisite: '',
-          medecin: '',
-          motifVisite: '',
-          bilan: '',
+          dateVisite: ['', Validators.required],
+          medecin: ['', Validators.required],
+          motifVisite: ['', Validators.required],
+          bilan: ['', Validators.required],
+          medicament: ['']
         }
       );
 
@@ -71,4 +72,47 @@ export class ModalRapportsVisitesComponent implements OnInit {
     this.modalRapportsVisites.show();
   }
 
+
+  AjouterMedicamentOffert()
+  {
+    if (this.formRapport.controls['medicament'].value != '') 
+    {
+      let indexSelect = this.formRapport.controls['medicament'].value
+      if (this.listeMedicaments[indexSelect] != undefined) 
+      {
+        this.medicamentsSelect.push(this.listeMedicaments[indexSelect]);
+        this.listeMedicaments.splice(indexSelect, 1);
+        this.medicamentsSelect.sort(function tri(a, b) 
+        {
+          if (a.nomCommercial < b.nomCommercial) {
+            return -1;
+          }
+          else if (a.nomCommercial === b.nomCommercial) {
+            return 0;
+          }
+          else
+          {
+            return 1;
+          }
+        });
+      }
+    }
+  }
+
+  SupprimerMedicamentOffert(index: number)
+  {
+    this.listeMedicaments.push(this.medicamentsSelect[index]);
+    this.medicamentsSelect.splice(index, 1);
+    this.listeMedicaments.sort(function tri(a, b) {
+      if (a.nomCommercial < b.nomCommercial) {
+        return -1;
+      }
+      else if (a.nomCommercial === b.nomCommercial) {
+        return 0;
+      }
+      else {
+        return 1;
+      }
+    });
+  }
 }

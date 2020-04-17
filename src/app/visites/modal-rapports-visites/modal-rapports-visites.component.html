@@ -26,6 +26,7 @@
               <div class="form-group col-md-6">
                 <label for="medecin">Medecin</label>
                 <select class="browser-default custom-select" id="medecin" formControlName="medecin">
+                  <option *ngIf="this.formRapport.controls['medecin'].value === ''" value="" selected>Sélectionnez un médecin</option>
                   <option *ngFor="let leMedecin of listeMedecins ; let i = index" value="{{i}}">{{leMedecin.prenom}} {{leMedecin.nom}}</option>
                 </select>
               </div>
@@ -50,13 +51,14 @@
             <div class="form-group">
               <label for="medicaments">Médicaments</label>
               <div class="input-group mb-2 w-100" id="medicaments">
-                <select class="browser-default custom-select">
+                <select class="browser-default custom-select" formControlName="medicament">
+                  <option *ngIf="this.formRapport.controls['medicament'].value === ''" value="" selected>Ajoutez des médicaments offerts</option>
                   <option *ngFor="let leMedoc of listeMedicaments ; let i = index" value="{{i}}">{{leMedoc.nomCommercial}}</option>
                 </select>
 
                 <div class="input-group-append">
                   <button mdbBtn color="success" size="md" class="m-0 px-3 py-2" type="button" id="ajouter"
-                    mdbWavesEffect>
+                    mdbWavesEffect (click)="AjouterMedicamentOffert()">
                     <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>
                     Ajouter
                   </button>
@@ -75,7 +77,14 @@
               </thead>
 
               <tbody>
-
+                <tr *ngFor="let leMedicament of medicamentsSelect; let i = index" [ngClass]="{'table-info': i % 2 === 1}">
+                  <th scope="row" class="align-middle">{{leMedicament.id}}</th>
+                  <td class="align-middle">{{leMedicament.nomCommercial}}</td>
+                  <td class="align-middle">{{leMedicament.libelleFamille}}</td>
+                  <td class="p-0 align-middle">
+                    <button (click)="SupprimerMedicamentOffert(i)" type="button" mdbBtn color="danger" mdbWavesEffect class="p-2 px-4 m-0 d-flex flex-row justify-content-center align-items-center"><mdb-icon fas icon="trash" class="mr-1"></mdb-icon>Supprimer</button>
+                  </td>
+              </tr>
               </tbody>
             </table>
 
