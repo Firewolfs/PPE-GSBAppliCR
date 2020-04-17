@@ -6,7 +6,7 @@
 </head>
 <body>
 <!-- Formulaire de connexion  -->
-<div class="form-container" style="margin-top: 10%; margin-left: 20%; margin-right: 20%;">
+<div class="form-container" style="margin-top: 10%; margin-left: 20%; margin-right: 20%; margin-bottom: 2%; text-align: center;">
 
   <form [formGroup]="loginForm" (ngSubmit)="onSignIn()"form class="text-center border border-light p-5">
         <div class="form-group">
@@ -17,8 +17,8 @@
           </div>
 <br>
           <!-- Affichage d'un msg d'erreur si le login ou le mdp est incorrect -->
-          <div class="alert alert-danger" *ngIf="erreur">
-            Login ou mot de passe incorrect
+          <div class="alert alert-danger animated shake" *ngIf="erreur">
+            <i class="fas fa-exclamation-triangle">  Login ou mot de passe incorrect</i>
           </div>
 
           <!-- Login et mdp -->
@@ -29,7 +29,7 @@
           </div>
           <div>
             <!-- Bouton connexion -->
-            <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">Connexion</button>
+            <button class="btn btn-primary waves-light" mdbWavesEffect type="submit" [disabled]="loginForm.invalid">Connexion</button>
           </div>
         </div>
   </form>
