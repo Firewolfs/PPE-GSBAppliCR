@@ -61,8 +61,8 @@
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="frame.hide()" mdbWavesEffect>Annuler</button>
-        <button mdbBtn color="default" class="relative waves-light" mdbWavesEffect (click)="onSubmit()">Valider</button>
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="frame.hide(); onCancel()" mdbWavesEffect>Annuler</button>
+        <button mdbBtn color="default" class="relative waves-light" mdbWavesEffect (click)="onSubmit(); frame.hide()">Valider</button>
       </div>
     </div>
   </div>

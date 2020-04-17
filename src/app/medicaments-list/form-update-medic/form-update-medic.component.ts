@@ -11,6 +11,10 @@ export class FormUpdateMedicComponent implements OnInit {
 
   validatingForm: FormGroup;
 
+  private sCompo: string;
+  private sEffect: string;
+  private sContreIndic: string;
+
   @Input() ref: string;
   @Input() name: string;
   @Input() compo: string;
@@ -29,15 +33,28 @@ export class FormUpdateMedicComponent implements OnInit {
       updMedicFormModalEffect: new FormControl('', Validators.required),
       updMedicFormModalContreIndic: new FormControl('')
     });
+
+    this.sCompo = this.compo;
+    this.sEffect = this.effect;
+    this.sContreIndic = this.contreIndic;
   }
 
   onSubmit() {
-    this.medicService.updateMedic(
-      this.ref,
-      this.updMedicFormModalCompo.value,
-      this.updMedicFormModalEffect.value,
-      this.updMedicFormModalContreIndic.value
-    );
+    if (this.validatingForm.valid) {
+      this.medicService.updateMedic(
+        this.ref,
+        this.updMedicFormModalCompo.value,
+        this.updMedicFormModalEffect.value,
+        this.updMedicFormModalContreIndic.value
+      );
+    }
   }
 
+  onCancel() {
+    this.validatingForm.reset({
+      updMedicFormModalCompo: this.sCompo,
+      updMedicFormModalEffect: this.sEffect,
+      updMedicFormModalContreIndic: this.sContreIndic
+    });
+  }
 }
